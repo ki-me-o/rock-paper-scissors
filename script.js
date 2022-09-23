@@ -18,7 +18,7 @@ function sanitizeChoice(choice) {
     choice = choice.toLowerCase();
     if (choice == "rock" || choice == "paper" || choice == "scissors"){
         return choice;
-    } else console.log("Didn't choose rock, paper, or scissors... You had to choose " + choice + " instead.");
+    } else alert("Didn't choose rock, paper, or scissors... You had to choose " + choice + " instead.");
     
 }
 
@@ -43,8 +43,23 @@ function playRound(playerSelection, computerSelection) {
     console.log("How did you get here?");
 }
 
+function game() {
+    let score = 0;
+    for (let i = 0; i < 5; i++) {
+        playerSelection = sanitizeChoice(prompt("Are you ready to RUUUUUUMBLE? Choose ROCK, PAPER, ooooor scissors"));
+        computerSelection = getComputerChoice();
+        resultMessage = playRound(playerSelection, computerSelection);
+        alert(resultMessage);
+        if (resultMessage.includes("WIN")) score++;
+    }
+    console.log("Your score was " + score + " out of 5!");
+}
+
+game();
+/*
 const playerSelection = "rock";
 const computerSelection = getComputerChoice();
 console.log("Computer randomly chose: " + computerSelection);
 
 console.log(playRound(playerSelection, computerSelection));
+*/
