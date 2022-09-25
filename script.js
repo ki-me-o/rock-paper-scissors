@@ -1,7 +1,12 @@
 /*
     A game of rock, paper, scissors to be played against the computer via the console
 */
+/* DOM manipulation*/
+const choices = document.querySelectorAll('.selections button');
 
+choices.forEach(button => button.addEventListener('click', playRound));
+
+/* Game Logic */
 function getComputerChoice() {
     let choice = Math.floor((Math.random() * 3)) + 1; // Random # between 1 and 3
     switch(choice){
@@ -22,9 +27,14 @@ function sanitizeChoice(choice) {
     
 }
 
-function playRound(playerSelection, computerSelection) {
-    let winMessage = "YOU WIN! " + playerSelection + " beats " + computerSelection;
-    let loseMessage = "YOU LOSE, LOSER!! " + computerSelection + " beats " + playerSelection;
+function playRound()  {
+    const computerSelection = getComputerChoice();
+    const playerSelection = this.classList.value;
+    const winMessage = "YOU WIN! " + playerSelection + " beats " + computerSelection;
+    const loseMessage = "YOU LOSE, LOSER!! " + computerSelection + " beats " + playerSelection;
+
+    console.log('entering round, playerSelection: ' + playerSelection);
+    console.log('computerSelection: ' + computerSelection);
 
     if (playerSelection == computerSelection) {
         return "TIE! You both chose " + playerSelection;
@@ -43,23 +53,3 @@ function playRound(playerSelection, computerSelection) {
     console.log("How did you get here?");
 }
 
-function game() {
-    let score = 0;
-    for (let i = 0; i < 5; i++) {
-        playerSelection = sanitizeChoice(prompt("Are you ready to RUUUUUUMBLE? Choose ROCK, PAPER, ooooor scissors"));
-        computerSelection = getComputerChoice();
-        resultMessage = playRound(playerSelection, computerSelection);
-        alert(resultMessage);
-        if (resultMessage.includes("WIN")) score++;
-    }
-    console.log("Your score was " + score + " out of 5!");
-}
-
-game();
-/*
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log("Computer randomly chose: " + computerSelection);
-
-console.log(playRound(playerSelection, computerSelection));
-*/
