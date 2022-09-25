@@ -26,14 +26,6 @@ function getComputerChoice() {
     }
 }
 
-function sanitizeChoice(choice) {
-    choice = choice.toLowerCase();
-    if (choice == "rock" || choice == "paper" || choice == "scissors"){
-        return choice;
-    } else alert("Didn't choose rock, paper, or scissors... You had to choose " + choice + " instead.");
-    
-}
-
 function updateMessage(message) {
     messageText = document.querySelector('.message');
     messageText.innerText = message;
