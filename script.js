@@ -6,10 +6,21 @@ const choices = document.querySelectorAll('.selections button');
 
 choices.forEach(button => button.addEventListener('click', playRound));
 
+function disableButtons() {
+    buttons = document.querySelectorAll('.selections button');
+    buttons.forEach(button => button.disabled = true)
+}
+
+function updateMessage(message) {
+    messageText = document.querySelector('.message');
+    messageText.innerText = message;
+}
+
 /* Game Logic */
 const WIN = 1;
 const TIE = 0;
 const LOSE = -1;
+const MAX_SCORE = 5;
 
 let playerSelection, computerSelection;
 let playerScore = 0, computerScore = 0;
@@ -26,9 +37,14 @@ function getComputerChoice() {
     }
 }
 
-function updateMessage(message) {
-    messageText = document.querySelector('.message');
-    messageText.innerText = message;
+function updateScore(result) {
+    if(result < 0) {
+        computerScore += Math.abs(result);
+    } else {
+        playerScore += result;
+    }
+    document.querySelector('.player.score').innerText = playerScore;
+    document.querySelector('.computer.score').innerText = computerScore;
 }
 
 function updateGameState(result) {
@@ -36,12 +52,20 @@ function updateGameState(result) {
     winMessage = "YOU WIN! " + playerSelection + " beats " + computerSelection;
     loseMessage = "YOU LOSE, LOSER!! " + computerSelection + " beats " + playerSelection;
 
-    if(result === WIN) {
-        message = winMessage;
-    } else if(result === LOSE) {
-        message = loseMessage;
-    }
+    if(result === WIN) message = winMessage;
+    else if(result === LOSE) message = loseMessage;
+    updateMessage(message);
+
     console.log(message);
+    updateScore(result);
+
+    if (computerScore >= MAX_SCORE) {
+        updateMessage("COMPUTER WINS!");
+        disableButtons();
+    } else if (playerScore >= MAX_SCORE) {
+        updateMessage("PLAYER WINS!");
+        disableButtons();
+    }
     
 }
 
