@@ -14,7 +14,11 @@ body {
     justify-content: space-between;
     font-size: 18px;
     margin: 0;
+    text-align: center;
+}
 
+.content {
+    width: 66%;
 }
 
 .hero {
@@ -22,7 +26,7 @@ body {
     background-color: rgb(9, 58, 98);
     width: 100%;
     color:antiquewhite;
-    font-size: 24px;
+    font-size: 32px;
     text-align: center;
     font-weight: 800;
     display: flex;
@@ -33,7 +37,7 @@ body {
 }
 
 .hero .subtext {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 600;
     color: rgb(238, 211, 194);
 }
@@ -62,10 +66,31 @@ body {
 
 }
 
+.prompt-text {
+    color: red;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 8px;
+}
+
+.selections {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px;
+}
+
 .score-container {
     display: flex;
     flex-direction: row;
     padding: 16px;
     justify-content: space-between;
     align-items: center;
+}
+
+button {
+    background-color: orange;
+    border: 2px black;
+    border-radius: 4px;
 }
